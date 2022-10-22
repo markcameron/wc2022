@@ -45,9 +45,9 @@ class FootballApiFetchTeams extends Command
     private function insertOrUpdate(array $team): void
     {
         Team::updateOrCreate([
+            'id' => $team['id'],
             'name' => $team['name'],
             'code' => $team['code'],
-            'football_api_id' => $team['id'],
         ]);
     }
 }
