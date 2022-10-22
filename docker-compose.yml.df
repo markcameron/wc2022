@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  app:
+    container_name: wc2022
+    restart: unless-stopped
+    image: hub.devfactory.ch/devfactory/docker-dev-images/php:8.1-laravel-dev-latest
+    networks:
+      - mysql
+      - redis
+      - traefik
+    environment:
+      - DB_HOST=mysql
+      - DB_USERNAME=root
+      - DB_DATABASE=wc2022
+      - DB_PASSWORD=
+      - LOG_CHANNEL=stderr
+    # ports:
+    #   - 3000:8000
+    volumes:
+      - ./:/app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wc2022.rule=Host(`wc2022.localhost`)"
+      - "traefik.http.routers.wc2022.entrypoints=web"
+      - "--entrypoints.web.address=:8000"
+
+networks:
+  traefik:
+    external: true
+  mysql:
+    external: true
+  redis:
+    external: true
