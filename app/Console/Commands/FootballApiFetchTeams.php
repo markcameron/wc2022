@@ -47,7 +47,33 @@ class FootballApiFetchTeams extends Command
         Team::updateOrCreate([
             'id' => $team['id'],
             'name' => $team['name'],
-            'code' => $team['code'],
+            'code' => $this->translateCode($team['code']),
         ]);
+    }
+
+    private function translateCode(string $code): string
+    {
+        $code = strtolower($code);
+
+        return match ($code) {
+            'eng' => 'gb-eng',
+            'ira' => 'irn',
+            'net' => 'nld',
+            'den' => 'dnk',
+            'mor' => 'mar',
+            'cro' => 'hrv',
+            'ger' => 'deu',
+            'jap' => 'jpn',
+            'swi' => 'che',
+            'cam' => 'cmr',
+            'uru' => 'ury',
+            'sou' => 'kor',
+            'ser' => 'srb',
+            'spa' => 'esp',
+            'cos' => 'cri',
+            'wal' => 'gb-wls',
+            'por' => 'prt',
+            default => $code,
+        };
     }
 }
