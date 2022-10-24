@@ -36,7 +36,7 @@ Route::middleware([
 
     Route::get('fixtures', function () {
         return Inertia::render('Fixtures', [
-            'fixtures' => Fixture::with(['homeTeam', 'awayTeam'])->get(),
+            'fixtures' => Fixture::with(['homeTeam', 'awayTeam'])->orderBy('date')->get(),
         ]);
     })->name('fixtures');
 

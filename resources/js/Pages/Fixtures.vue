@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import moment from 'moment';
+import 'moment-timezone';
 import CountryFlag from 'vue-country-flag-next';
 
 defineProps({
@@ -28,7 +29,7 @@ defineProps({
                     <div class="flex flex-row">
                         <div class="mr-4 flex items-center"><CountryFlag :country="fixture.away_team.code" /></div>
                         <div class="flex flex-grow items-center">{{ fixture.away_team.name }}</div>
-                        <div class="w-16 uppercase text-center">{{ moment(fixture.date).format('HH:mm') }}</div>
+                        <div class="w-16 uppercase text-center">{{ moment.utc(fixture.date).tz('Europe/Zurich').format('HH:mm') }}</div>
                     </div>
                 </div>
 
