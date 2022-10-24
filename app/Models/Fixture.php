@@ -25,7 +25,7 @@ class Fixture extends Model
     }
 
     public function awayTeam() {
-        return $this->belongsTo(Team::class, 'home_team_id');
+        return $this->belongsTo(Team::class, 'away_team_id');
     }
 
     public function venue() {
