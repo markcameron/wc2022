@@ -31,7 +31,7 @@ const back = () => {
 
                 <div class="bg-white rounded-lg">
                     <div class="p-4">
-                        <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ moment.utc(fixture.date).tz('Europe/Zurich').format('ddd D - HH:mm') }}</p>
+                        <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ moment.utc(fixture.date).tz('Europe/Zurich').format('dddd Do - HH:mm') }}</p>
                         <div class="text-3xl text-gray-900 flex flex-row">
                             <div class="mr-4 flex items-center"><CountryFlag :country="fixture.home_team.code" /></div>
                             <div class="flex-grow">{{ fixture.home_team.name }}</div>

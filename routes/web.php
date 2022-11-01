@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\FixturesController;
 use Inertia\Inertia;
 use App\Models\Fixture;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\FixturesController;
+use App\Http\Controllers\PredictionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,10 @@ Route::middleware([
         Route::get('fixtures/{fixture}', 'show')->name('fixtures.show');
     });
 
+    Route::controller(PredictionsController::class)->group(function () {
+        Route::get('predictions', 'index')->name('predictions');
+        Route::get('predictions/{fixture}', 'show')->name('predictions.show');
+        Route::put('predictions/decrease-score', 'decreaseScore')->name('predictions.decrease_score');
+        Route::put('predictions/increase-score', 'increaseScore')->name('predictions.increase_score');
+    });
 });

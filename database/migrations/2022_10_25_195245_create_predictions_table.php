@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer('fixture_id')->unsigned()->index();
             $table->foreign('fixture_id')->references('id')->on('fixtures')->onDelete('cascade');
 
-            $table->tinyInteger('score_home');
-            $table->tinyInteger('score_away');
+            $table->tinyInteger('score_home')->default(0);
+            $table->tinyInteger('score_away')->default(0);
         });
     }
 
