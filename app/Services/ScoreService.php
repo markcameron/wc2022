@@ -25,7 +25,7 @@ class ScoreService
 
     public function getPredictionStatus(Prediction $prediction): ?string
     {
-        if (!$prediction->game->started) {
+        if (!$prediction->fixture->started) {
             return null;
         }
 
@@ -46,7 +46,7 @@ class ScoreService
 
     private function getPredictionPoints(Prediction $prediction): int
     {
-        if (!$prediction->game->started) {
+        if (!$prediction->fixture->started) {
             return 0;
         }
 
@@ -66,7 +66,7 @@ class ScoreService
     }
 
     /**
-     * Check if the user predicted the correct score of the game
+     * Check if the user predicted the correct score of the fixture
      *
      * @param Prediction $prediction
      * The prediction Eloquent object
@@ -76,12 +76,12 @@ class ScoreService
      */
     private function predictedCorrectScore(Prediction $prediction): bool
     {
-        return $prediction->score_home === $prediction->game->score_home
-            && $prediction->score_away === $prediction->game->score_away;
+        return $prediction->score_home === $prediction->fixture->score_home
+            && $prediction->score_away === $prediction->fixture->score_away;
     }
 
     /**
-     * Check if the user predicted the correct goal difference of the game
+     * Check if the user predicted the correct goal difference of the fixture
      *
      * @param Prediction $prediction
      * The prediction Eloquent object
@@ -96,13 +96,13 @@ class ScoreService
         }
 
         $predicted_difference = $prediction->score_home - $prediction->score_away;
-        $match_difference = $prediction->game->score_home - $prediction->game->score_away;
+        $match_difference = $prediction->fixture->score_home - $prediction->fixture->score_away;
 
         return $predicted_difference === $match_difference;
     }
 
     /**
-     * Check if the user predicted the correct winner of the game
+     * Check if the user predicted the correct winner of the fixture
      *
      * @param Prediction $prediction
      * The prediction Eloquent object
@@ -117,7 +117,7 @@ class ScoreService
         }
 
         $predicted_difference = $prediction->score_home - $prediction->score_away;
-        $match_difference = $prediction->game->score_home - $prediction->game->score_away;
+        $match_difference = $prediction->fixture->score_home - $prediction->fixture->score_away;
 
         return $predicted_difference < 0 && $match_difference < 0
             || $predicted_difference > 0 && $match_difference > 0;

@@ -5,6 +5,7 @@ use App\Models\Fixture;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\FixturesController;
+use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\PredictionsController;
 
 /*
@@ -46,5 +47,9 @@ Route::middleware([
         Route::get('predictions/{fixture}', 'show')->name('predictions.show');
         Route::put('predictions/decrease-score', 'decreaseScore')->name('predictions.decrease_score');
         Route::put('predictions/increase-score', 'increaseScore')->name('predictions.increase_score');
+    });
+
+    Route::controller(LeaderboardController::class)->group(function () {
+        Route::get('leaderboard', 'index')->name('leaderboard');
     });
 });

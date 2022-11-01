@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Fixture;
+use App\Services\ScoreService;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -68,5 +69,10 @@ class User extends Authenticatable
     public function prediction(Fixture $fixture)
     {
         return $this->predictions()->where('fixture_id', $fixture->id)->first();
+    }
+
+    public function getScoreAttribute()
+    {
+        return resolve(ScoreService::class)->getUserScore($this);
     }
 }

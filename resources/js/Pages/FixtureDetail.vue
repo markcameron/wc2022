@@ -49,7 +49,7 @@ const back = () => {
 
                     <div v-if="fixture.started" class="border-t border-gray-300 rounded-b-lg">
                         <div v-for="user in users" class="flex items-center px-2 py-2 border-b border-gray-300 last:border-b-0">
-                            <div class="mr-2 bg-{{ $user->background_color }} w-10 h-10 flex-shrink-0 rounded-full flex items-center justify-center">
+                            <div class="mr-2 bg-{{ user.background_color }} w-10 h-10 flex-shrink-0 rounded-full flex items-center justify-center">
                                 <img :src="user.info.profile_photo_url" class="rounded-full" />
                             </div>
                             <div class="flex-grow">
