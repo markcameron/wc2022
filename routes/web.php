@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FixturesController;
 use Inertia\Inertia;
 use App\Models\Fixture;
 use Illuminate\Support\Facades\Route;
@@ -34,10 +35,9 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('fixtures', function () {
-        return Inertia::render('Fixtures', [
-            'fixtures' => Fixture::with(['homeTeam', 'awayTeam'])->orderBy('date')->get(),
-        ]);
-    })->name('fixtures');
+    Route::controller(FixturesController::class)->group(function () {
+        Route::get('fixtures', 'index')->name('fixtures');
+        Route::get('fixtures/{fixture}', 'show')->name('fixtures.show');
+    });
 
 });

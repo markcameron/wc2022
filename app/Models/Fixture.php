@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Fixture extends Model
@@ -20,6 +21,10 @@ class Fixture extends Model
         'can_predict',
     ];
 
+    protected $appends = [
+        'url',
+    ];
+
     public function homeTeam() {
         return $this->belongsTo(Team::class, 'home_team_id');
     }
@@ -30,5 +35,17 @@ class Fixture extends Model
 
     public function venue() {
         return $this->belongsTo(Venue::class);
+    }
+
+    /**
+     * Get the user's first name.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function url(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => route('fixtures.show', $this->id),
+        );
     }
 }
