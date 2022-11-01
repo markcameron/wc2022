@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Fixture;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ class FixturesController extends Controller
 
         return Inertia::render('FixtureDetail', [
             'fixture' => $fixture,
+            'users' => User::get()->map(fn($user) => [
+                'info' => $user,
+                'prediction' => $user->prediction($fixture),
+            ]),
         ]);
     }
 }

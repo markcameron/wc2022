@@ -26,6 +26,11 @@ class Fixture extends Model
     protected $appends = [
         'url',
         'url_prediction',
+        'started',
+    ];
+
+    protected $dates = [
+        'date'
     ];
 
     public function homeTeam()
@@ -84,6 +89,18 @@ class Fixture extends Model
     {
         return Attribute::make(
             get: fn ($value) => route('predictions.show', $this->id),
+        );
+    }
+
+    /**
+     * Get the started state of the fixture
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function started(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->date->isBefore(now()),
         );
     }
 }

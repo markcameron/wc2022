@@ -49,7 +49,7 @@ const increaseScore = (prediction, team) => {
 
                         <BannerDanger :show="!prediction.fixture.can_predict">Predictions for this match are closed</BannerDanger>
 
-                        <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ moment.utc(prediction.fixture.date).tz('Europe/Zurich').format('dddd Do - HH:mm') }}</p>
+                        <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ moment.utc(prediction.fixture.date).tz('Europe/Zurich').format('dddd MMMM Do - HH:mm') }}</p>
                         <div class="text-3xl text-gray-900 flex flex-row">
                             <div class="mr-4 flex items-center"><CountryFlag :country="prediction.fixture.home_team.code" /></div>
                             <div class="flex-grow">{{ prediction.fixture.home_team.name }}</div>
