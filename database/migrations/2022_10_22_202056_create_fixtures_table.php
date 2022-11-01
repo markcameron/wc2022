@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreign('venue_id')->references('id')->on('venues')->onDelete('cascade');
             $table->string('stage')->nullable();
             $table->boolean('can_predict')->default(1);
+            $table->tinyInteger('score_home')->nullable();
+            $table->tinyInteger('score_away')->nullable();
         });
     }
 
