@@ -33,10 +33,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
     Route::controller(FixturesController::class)->group(function () {
         Route::get('fixtures', 'index')->name('fixtures');
         Route::get('fixtures/{fixture}', 'show')->name('fixtures.show');
