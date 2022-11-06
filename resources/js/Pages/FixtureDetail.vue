@@ -53,7 +53,7 @@ const back = () => {
                                 <img :src="user.info.profile_photo_url" class="rounded-full" />
                             </div>
                             <div class="flex-grow">
-                                <p class="font-bold text-gray-900">{{ user.info.name }}</p>
+                                <p class="font-bold text-gray-900">{{ user.info.display_name }}</p>
                             </div>
                             <template v-if="user.prediction">
                                 <div class="w-14 flex-shrink-0 text-2xl font-bold">

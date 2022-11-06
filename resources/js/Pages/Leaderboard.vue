@@ -25,7 +25,7 @@ defineProps({
                                 <img :src="user.profile_photo_url" class="rounded-full" />
                             </div>
                             <div class="flex-grow">
-                                <p class="font-bold text-gray-900">{{ user.nickname ?? user.name }}</p>
+                                <p class="font-bold text-gray-900">{{ user.display_name }}</p>
                                 <p class="text-sm text-gray-700">{{ user.catchphrase }}</p>
                             </div>
                             <div class="w-14 flex-shrink-0 text-2xl font-bold text-right">

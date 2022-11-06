@@ -9,6 +9,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -59,6 +60,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'display_name',
     ];
 
     public function predictions()
@@ -74,5 +76,17 @@ class User extends Authenticatable
     public function getScoreAttribute()
     {
         return resolve(ScoreService::class)->getUserScore($this);
+    }
+
+    /**
+     * Get the Fixture detail URL
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function displayName(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->nickname ?? $this->name,
+        );
     }
 }
