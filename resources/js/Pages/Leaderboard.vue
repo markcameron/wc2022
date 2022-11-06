@@ -27,6 +27,7 @@ defineProps({
                             <div class="flex-grow">
                                 <p class="font-bold text-gray-900">{{ user.display_name }}</p>
                                 <p class="text-sm text-gray-700">{{ user.catchphrase }}</p>
+                                <p v-if="user.nickname" class="text-sm text-gray-700">{{ user.name }}</p>
                             </div>
                             <div class="w-14 flex-shrink-0 text-2xl font-bold text-right">
                                 {{ user.score }}
