@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@heroicons/vue": "^2.0.13",
         "moment": "^2.29.4",
         "moment-timezone": "^0.5.38",
         "vue-country-flag-next": "^2.3.2"

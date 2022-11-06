@@ -3,8 +3,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import { Inertia } from '@inertiajs/inertia'
 import moment from 'moment';
 import 'moment-timezone';
-import CountryFlag from 'vue-country-flag-next';
-import { Link } from '@inertiajs/inertia-vue3';
 import Back from '@/Components/Back.vue';
 
 defineProps({
@@ -18,7 +16,7 @@ const back = () => {
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Fixture Detail">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Fixture Detail
@@ -27,7 +25,7 @@ const back = () => {
 
         <Back href="/fixtures">back</Back>
 
-        <div class="py-4 px-4">
+        <div class="py-8 px-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                 <div class="bg-white rounded-lg">

@@ -26,9 +26,10 @@ class PredictionsController extends Controller
             'fixture_id' => $fixture->id,
         ]);
 
+        $prediction->score_home = $prediction->score_home ?? 0;
+        $prediction->score_away = $prediction->score_away ?? 0;
+
         $prediction->load(['fixture.homeTeam', 'fixture.awayTeam', 'fixture.venue']);
-        // dd($prediction);
-        // $fixture->load(['homeTeam', 'awayTeam', 'venue', 'userPrediction']);
 
         return Inertia::render('PredictionDetail', [
             'prediction' => $prediction,
@@ -38,7 +39,6 @@ class PredictionsController extends Controller
     public function decreaseScore(Request $request)
     {
         $fixtureId = $request->fixture_id;
-        // $team = $request->team;
 
         $prediction = Prediction::where('user_id', auth()->user()->id)
             ->where('fixture_id', $fixtureId)

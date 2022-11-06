@@ -8,6 +8,9 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import { QueueListIcon } from '@heroicons/vue/24/outline';
+import { ClipboardDocumentCheckIcon } from '@heroicons/vue/24/outline';
+import { UserGroupIcon } from '@heroicons/vue/24/outline';
 
 defineProps({
     title: String,
@@ -49,15 +52,6 @@ const logout = () => {
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('fixtures')" :active="route().current('fixtures')">
-                                    Fixtures
-                                </NavLink>
-                                <NavLink :href="route('predictions')" :active="route().current('predictions')">
-                                    Predictions
-                                </NavLink>
-                                <NavLink :href="route('leaderboard')" :active="route().current('leaderboard')">
-                                    Leaderboard
-                                </NavLink>
                             </div>
                         </div>
 
@@ -307,17 +301,33 @@ const logout = () => {
                 </div>
             </nav>
 
-            <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
-
             <!-- Page Content -->
             <main>
+
                 <slot />
+
             </main>
+
+            <div class="w-full h-screen">
+                <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
+                <section id="bottom-navigation" class="block fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+                    <div id="tabs" class="flex justify-between">
+                        <NavLink :href="route('fixtures')" :active="route().current('fixtures')" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 flex flex-col">
+                            <QueueListIcon class="inline-block w-8 h-8 mb-1"></QueueListIcon>
+                            <span class="tab tab-home block text-xs">Matches</span>
+                        </NavLink>
+                        <NavLink :href="route('predictions')" :active="route().current('predictions')" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 flex flex-col">
+                            <ClipboardDocumentCheckIcon class="inline-block w-8 h-8 mb-1"></ClipboardDocumentCheckIcon>
+                            <span class="tab tab-home block text-xs">Predictions</span>
+                        </NavLink>
+                        <NavLink :href="route('leaderboard')" :active="route().current('leaderboard')" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 flex flex-col">
+                            <UserGroupIcon class="inline-block w-8 h-8 mb-1"></UserGroupIcon>
+                            <span class="tab tab-home block text-xs">Leaderboard</span>
+                        </NavLink>
+                    </div>
+                </section>
+            </div>
+
         </div>
     </div>
 </template>

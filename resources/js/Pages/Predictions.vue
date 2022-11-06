@@ -1,8 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import moment from 'moment';
 import 'moment-timezone';
-import CountryFlag from 'vue-country-flag-next';
 import { Link } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -11,14 +9,14 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Predictions">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Predictions
             </h2>
         </template>
 
-        <div class="py-12 px-4">
+        <div class="py-8 px-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     
                 <div v-for="fixture in fixtures"
