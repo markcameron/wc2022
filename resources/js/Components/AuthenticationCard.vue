@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-wc-darker">
-        <div>
+    <div class="min-h-screen flex flex-col sm:justify-center pt-6 sm:pt-0 bg-wc-darker ">
+        <div class="py-10 flex justify-center">
             <slot name="logo" />
         </div>
 
