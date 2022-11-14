@@ -85,5 +85,13 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+
+        <hr class="my-4" />
+
+        <div>
+            <Link :href="route('register')" class="inline-block w-full rounded-lg bg-wc-darkest text-center text-white py-2 hover:bg-wc-darker focus:bg-wc-darker">
+                Register
+            </Link>
+        </div>
     </AuthenticationCard>
 </template>
