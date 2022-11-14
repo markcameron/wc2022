@@ -54,26 +54,26 @@ const increaseScore = (prediction, team) => {
                             <div class="mr-4 flex items-center" v-html="prediction.fixture.home_team.flag"></div>
                             <div class="flex-grow">{{ prediction.fixture.home_team.name }}</div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="decreaseScore(prediction, 'home')">
-                                <MinusIcon class="h-8 w-8 text-blue-500"></MinusIcon>
+                                <MinusIcon class="h-8 w-8 text-wc-dark"></MinusIcon>
                             </div>
                             <div class="w-8 flex justify-center">
                                 {{ prediction.score_home }}
                             </div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="increaseScore(prediction, 'home')">
-                                <PlusIcon class="h-8 w-8 text-blue-500"></PlusIcon>
+                                <PlusIcon class="h-8 w-8 text-wc-dark"></PlusIcon>
                             </div>
                         </div>
                         <div class="text-3xl text-gray-900 flex flex-row">
                             <div class="mr-4 flex items-center" v-html="prediction.fixture.away_team.flag"></div>
                             <div class="flex-grow">{{ prediction.fixture.away_team.name }}</div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="decreaseScore(prediction, 'away')">
-                                <MinusIcon class="h-8 w-8 text-blue-500"></MinusIcon>
+                                <MinusIcon class="h-8 w-8 text-wc-dark"></MinusIcon>
                             </div>
                             <div class="w-8 flex justify-center">
                                 {{ prediction.score_away }}
                             </div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="increaseScore(prediction, 'away')">
-                                <PlusIcon class="h-8 w-8 text-blue-500"></PlusIcon>
+                                <PlusIcon class="h-8 w-8 text-wc-dark"></PlusIcon>
                             </div>
                         </div>
                         <p class="mt-2 text-gray-500 tracking-tighter uppercase text-sm">{{ prediction.fixture.venue.name }} - {{ prediction.fixture.venue.city }}</p>

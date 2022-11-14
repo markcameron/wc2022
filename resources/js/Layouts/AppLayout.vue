@@ -37,8 +37,8 @@ const logout = () => {
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+        <div class="flex flex-col h-screen bg-gray-100">
+            <header class="bg-wc-darker border-b border-gray-100 sticky top-0">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -178,7 +178,7 @@ const logout = () => {
 
                         <!-- Hamburger -->
                         <div class="-mr-2 flex items-center sm:hidden">
-                            <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition" @click="showingNavigationDropdown = ! showingNavigationDropdown">
+                            <button class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-none focus:text-wc-dark transition" @click="showingNavigationDropdown = ! showingNavigationDropdown">
                                 <svg
                                     class="h-6 w-6"
                                     stroke="currentColor"
@@ -227,10 +227,10 @@ const logout = () => {
                             </div>
 
                             <div>
-                                <div class="font-medium text-base text-gray-800">
+                                <div class="font-medium text-base text-wc-lightest">
                                     {{ $page.props.user.name }}
                                 </div>
-                                <div class="font-medium text-sm text-gray-500">
+                                <div class="font-medium text-sm text-wc-lighter">
                                     {{ $page.props.user.email }}
                                 </div>
                             </div>
@@ -299,34 +299,34 @@ const logout = () => {
                         </div>
                     </div>
                 </div>
-            </nav>
+            </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-1 overflow-y-scroll bg-gradient-to-b from-wc-darker to-wc-dark">
 
                 <slot />
 
             </main>
 
-            <div class="w-full h-screen">
+            <footer class="w-full sticky bottom-0 h-16">
                 <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
-                <section id="bottom-navigation" class="block fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+                <section id="bottom-navigation" class="block fixed inset-x-0 bottom-0 z-10 bg-wc-dark shadow">
                     <div id="tabs" class="flex justify-between">
-                        <NavLink :href="route('fixtures')" :active="route().current('fixtures')" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 flex flex-col">
+                        <NavLink :href="route('fixtures')" :active="route().current('fixtures')" class="">
                             <QueueListIcon class="inline-block w-8 h-8 mb-1"></QueueListIcon>
-                            <span class="tab tab-home block text-xs">Matches</span>
+                            <span class="tab tab-home block text-xs font-extrabold">Matches</span>
                         </NavLink>
-                        <NavLink :href="route('predictions')" :active="route().current('predictions')" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 flex flex-col">
+                        <NavLink :href="route('predictions')" :active="route().current('predictions')" class="">
                             <ClipboardDocumentCheckIcon class="inline-block w-8 h-8 mb-1"></ClipboardDocumentCheckIcon>
                             <span class="tab tab-home block text-xs">Predictions</span>
                         </NavLink>
-                        <NavLink :href="route('leaderboard')" :active="route().current('leaderboard')" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 flex flex-col">
+                        <NavLink :href="route('leaderboard')" :active="route().current('leaderboard')" class="">
                             <UserGroupIcon class="inline-block w-8 h-8 mb-1"></UserGroupIcon>
                             <span class="tab tab-home block text-xs">Leaderboard</span>
                         </NavLink>
                     </div>
                 </section>
-            </div>
+            </footer>
 
         </div>
     </div>
