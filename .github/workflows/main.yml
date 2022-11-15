@@ -17,7 +17,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v3
-
+    # Cache Docker layers for faster builds
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      # Ignore the failure of a step and avoid terminating the job.
+      continue-on-error: true
     # Install PHP Vendor packages
     # - name: fake private key #Needed to fake key for composer
     #   run: touch api/storage/oauth-private.key
