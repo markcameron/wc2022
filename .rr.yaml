@@ -2,7 +2,7 @@ version: "2.7"
 
 server:
   command: "php ./vendor/bin/rr-worker start" # --relay-dsn unix:///var/run/rr-relay.sock
-  relay: "unix:///var/run/rr-relay.sock"
+  # relay: "unix:///var/run/rr-relay.sock"
 
 http:
   address: 0.0.0.0:8080
