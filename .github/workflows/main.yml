@@ -1,0 +1,42 @@
+name: CI/CD
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-api:
+    name: Build API
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Install PHP Vendor packages
+    - name: fake private key #Needed to fake key for composer
+      run: touch api/storage/oauth-private.key
+    - name: Copy ENV Laravel Configuration for CI
+      run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
+    - name: Install Dependencies (PHP vendors)
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist --working-dir=api
+    # Install NPM packages
+    - name: Install packages
+      run: npm install -f
+    - name: Compile VueJS PWA
+      run: npm run build
+    # Dockerize and push
+    - name: Dockerize
+      run: docker build -t ${{ github.repository }}:latest -t ${{ github.repository }}:1.${{ github.run_number}} -f api/.docker/Dockerfile api
+    - name: Log in to registry
+      run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u markcameron --password-stdin docker.io
+    - name: Push the latest Docker image
+      if: success()
+      run: |
+        docker push ${{ github.repository }}:latest
+        docker push ${{ github.repository }}:1.${{ github.run_number}}

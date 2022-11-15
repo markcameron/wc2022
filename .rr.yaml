@@ -1,0 +1,19 @@
+version: "2.7"
+
+server:
+  command: "php ./vendor/bin/rr-worker start --relay-dsn unix:///var/run/rr-relay.sock"
+  relay: "unix:///var/run/rr-relay.sock"
+
+http:
+  address: 0.0.0.0:8080
+  middleware: ["static", "headers", "gzip"]
+  pool:
+    max_jobs: 64 # feel free to change this
+    supervisor:
+      exec_ttl: 60s
+  headers:
+    response:
+      X-Powered-By: "RoadRunner"
+  static:
+    dir: "public"
+    forbid: [".php"]
