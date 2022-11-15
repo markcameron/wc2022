@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-api:
-    name: Build API
+    name: Build and Dockerize
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -32,7 +32,7 @@ jobs:
       run: npm run build
     # Dockerize and push
     - name: Dockerize
-      run: docker build -t ${{ github.repository }}:latest -t ${{ github.repository }}:1.${{ github.run_number}} -f api/.docker/Dockerfile api
+      run: docker build -t ${{ github.repository }}:latest -t ${{ github.repository }}:1.${{ github.run_number}} -f Dockerfile .
     - name: Log in to registry
       run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u markcameron --password-stdin docker.io
     - name: Push the latest Docker image
