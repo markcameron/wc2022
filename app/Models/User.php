@@ -12,8 +12,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Models\Contracts\FilamentUser;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -88,5 +89,10 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn ($value) => $this->nickname ?? $this->name,
         );
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->email === 'budfrogfryer@gmail.com';
     }
 }
