@@ -56,6 +56,12 @@ return [
             'throw' => false,
         ],
 
+        'node_modules' => [
+            'driver' => 'local',
+            'root' => 'node_modules',
+            'throw' => false,
+        ],
+
     ],
 
     /*

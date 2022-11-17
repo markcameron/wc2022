@@ -18,6 +18,7 @@ class Team extends Model
 
     protected $appends = [
         'flag',
+        // 'flag_id',
     ];
 
     /**
@@ -28,7 +29,20 @@ class Team extends Model
     protected function flag(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => flag($this->flag_code, 'w-6', [$this->code === 'che' ? 'style="max-height:18px;"' : ''])->toHtml(),
+            get: fn ($value) => $this->flag_code,
+            // get: fn ($value) => flag($this->flag_code, 'w-6', [$this->code === 'che' ? 'style="max-height:18px;"' : ''])->toHtml(),
+        );
+    }
+
+    /**
+     * Get the Fixture detail URL
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function flagId(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->flag_code,
         );
     }
 
@@ -46,7 +60,7 @@ class Team extends Model
                 'bel' => 'be',
                 'bra' => 'br',
                 'can' => 'ca',
-                'che' => 'ch:1x1',
+                'che' => 'ch',
                 'cmr' => 'cm',
                 'cri' => 'cr',
                 'deu' => 'de',

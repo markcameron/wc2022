@@ -1,6 +1,7 @@
 <script setup>
     import { onMounted, onUnmounted } from 'vue';
     import AppLayout from '@/Layouts/AppLayout.vue';
+    import Flag from '@/Components/Flag.vue';
     import 'moment-timezone';
     import { Link } from '@inertiajs/inertia-vue3';
 
@@ -42,12 +43,12 @@
                 >
                     <Link :href="fixture.url_prediction">
                         <div class="flex flex-row">
-                            <div class="mr-4 flex items-center" v-html="fixture.home_team.flag"></div>
+                            <div class="mr-4 flex items-center"><Flag :code="fixture.home_team.flag" /></div>
                             <div class="flex flex-grow items-center">{{ fixture.home_team.name }}</div>
                             <div class="w-16 uppercase text-center">{{ fixture.user_prediction ? fixture.user_prediction.score_home : '-' }}</div>
                         </div>
                         <div class="flex flex-row">
-                            <div class="mr-4 flex items-center" v-html="fixture.away_team.flag"></div>
+                            <div class="mr-4 flex items-center"><Flag :code="fixture.away_team.flag" /></div>
                             <div class="flex flex-grow items-center">{{ fixture.away_team.name }}</div>
                             <div class="w-16 uppercase text-center">{{ fixture.user_prediction ? fixture.user_prediction.score_away : '-' }}</div>
                         </div>

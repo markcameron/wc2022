@@ -5,6 +5,7 @@ import moment from 'moment';
 import 'moment-timezone';
 import Back from '@/Components/Back.vue';
 import BannerDanger from '@/Components/BannerDanger.vue';
+import Flag from '@/Components/Flag.vue';
 import { MinusIcon } from '@heroicons/vue/24/solid';
 import { PlusIcon } from '@heroicons/vue/24/solid';
 
@@ -51,7 +52,7 @@ const increaseScore = (prediction, team) => {
 
                         <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ moment.utc(prediction.fixture.date).tz('Europe/Zurich').format('dddd MMMM Do - HH:mm') }}</p>
                         <div class="text-3xl text-gray-900 flex flex-row">
-                            <div class="mr-4 flex items-center" v-html="prediction.fixture.home_team.flag"></div>
+                            <div class="mr-4 flex items-center"><Flag :code="prediction.fixture.home_team.flag" /></div>
                             <div class="flex-grow">{{ prediction.fixture.home_team.name }}</div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="decreaseScore(prediction, 'home')">
                                 <MinusIcon class="h-8 w-8 text-wc-dark"></MinusIcon>
@@ -64,7 +65,7 @@ const increaseScore = (prediction, team) => {
                             </div>
                         </div>
                         <div class="text-3xl text-gray-900 flex flex-row">
-                            <div class="mr-4 flex items-center" v-html="prediction.fixture.away_team.flag"></div>
+                            <div class="mr-4 flex items-center"><Flag :code="prediction.fixture.away_team.flag" /></div>
                             <div class="flex-grow">{{ prediction.fixture.away_team.name }}</div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="decreaseScore(prediction, 'away')">
                                 <MinusIcon class="h-8 w-8 text-wc-dark"></MinusIcon>
