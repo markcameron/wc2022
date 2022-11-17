@@ -16,7 +16,7 @@
 
                 <h1 class="text-2xl mb-4 font-bold">Rules</h1>
                 <h2 class="text-xl mb-2 font-bold">Predictions</h2>
-                <p class="mb-2">For all group stage predictions, you must have predicted all results by kick off of the first game (June 11th 2021, 1500 CET).</p>
+                <p class="mb-2">For all group stage predictions, you must have predicted all results by kick off of the first game (November 20th 2022, 1700 CET).</p>
                 <p class="mb-2">For the knockout round, predictions need only be in by kick off of the game in question.</p>
 
                 <h2 class="text-xl mt-6 mb-2 font-bold">Scoring</h2>
