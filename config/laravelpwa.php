@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'LaravelPWA',
+    'name' => 'Qatar 2022 Predictor',
     'manifest' => [
         'name' => 'Qatar 2022 Predictor',
         'short_name' => 'Qatar 2022',
@@ -62,6 +62,10 @@ return [
                 'name' => 'Fixtures',
                 'description' => 'List of Fixtures',
                 'url' => '/fixtures',
+                'icons' => [
+                    "src" => "/images/icons/icon-96x96.png",
+                    "purpose" => "any"
+                ]
             ],
             [
                 'name' => 'Predictions',
