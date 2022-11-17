@@ -34,12 +34,12 @@ const back = () => {
                     <div class="p-4">
                         <p class="mb-2 uppercase tracking-wide text-sm font-bold text-gray-700">{{ moment.utc(fixture.date).tz('Europe/Zurich').format('dddd MMMM Do - HH:mm') }}</p>
                         <div class="text-3xl text-gray-900 flex flex-row">
-                            <div class="mr-4 flex items-center"><Flag :code="fixture.home_team.flag" /></div>
+                            <div class="mr-3 flex items-center"><Flag :code="fixture.home_team.flag" width="w-10" height="h-7" /></div>
                             <div class="flex-grow">{{ fixture.home_team.name }}</div>
                             <div class="w-8">{{ fixture.started ? fixture.score_home : '' }}</div>
                         </div>
                         <div class="text-3xl text-gray-900 flex flex-row">
-                            <div class="mr-4 flex items-center"><Flag :code="fixture.away_team.flag" /></div>
+                            <div class="mr-3 flex items-center"><Flag :code="fixture.away_team.flag" width="w-10" height="h-7" /></div>
                             <div class="flex-grow">{{ fixture.away_team.name }}</div>
                             <div class="w-8">{{ fixture.started ? fixture.score_away : '' }}</div>
                         </div>
