@@ -57,7 +57,7 @@ const increaseScore = (prediction, team) => {
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="decreaseScore(prediction, 'home')">
                                 <MinusIcon class="h-8 w-8 text-wc-dark"></MinusIcon>
                             </div>
-                            <div class="w-3 flex justify-center">
+                            <div class="w-8 flex justify-center">
                                 {{ prediction.score_home }}
                             </div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="increaseScore(prediction, 'home')">
@@ -65,7 +65,7 @@ const increaseScore = (prediction, team) => {
                             </div>
                         </div>
                         <div class="text-3xl text-gray-900 flex flex-row">
-                            <div class="mr-4 flex items-center"><Flag :code="prediction.fixture.away_team.flag" width="w-10" height="h-7" /></div>
+                            <div class="mr-3 flex items-center"><Flag :code="prediction.fixture.away_team.flag" width="w-10" height="h-7" /></div>
                             <div class="flex-grow">{{ prediction.fixture.away_team.name }}</div>
                             <div v-if="prediction.fixture.can_predict" class="w-8 flex items-center justify-center" @click="decreaseScore(prediction, 'away')">
                                 <MinusIcon class="h-8 w-8 text-wc-dark"></MinusIcon>
