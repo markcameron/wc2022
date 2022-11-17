@@ -21,7 +21,7 @@ module.exports = {
                 'wc-light': '#d29e6c',
                 'wc': '#1AA0B3',
                 'wc-dark': '#d1785f', //'#8a1538',
-                'wc-darker': '#9f3043', //'#56042C',
+                'wc-darker': '#953044', //'#9f3043', //'#56042C',
                 'wc-darkest': '#982043', //'#3d0918',
             },
         },
