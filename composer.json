@@ -18,6 +18,8 @@
         "laravel/tinker": "^2.7",
         "silviolleite/laravelpwa": "^2.0",
         "spiral/roadrunner-laravel": "^5.9",
+        "symfony/http-client": "^6.1",
+        "symfony/mailgun-mailer": "^6.1",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
