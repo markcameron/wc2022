@@ -38,7 +38,7 @@ const logout = () => {
         <Banner />
 
         <div class="flex flex-col h-screen bg-gray-100">
-            <header class="bg-wc-darker border-b border-gray-100 sticky top-0">
+            <header class="bg-wc-darker sticky top-0">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">

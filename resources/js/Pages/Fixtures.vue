@@ -36,7 +36,7 @@
             </h2>
         </template>
 
-        <div class="py-8 px-4">
+        <div class="py-2 px-4">
             <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
 
                 <div v-for="fixture in fixtures" class="mb-2 py-2 px-4 rounded-lg bg-white border border-white font-bold">
