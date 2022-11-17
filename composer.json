@@ -16,6 +16,7 @@
         "laravel/jetstream": "^2.12",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "silviolleite/laravelpwa": "^2.0",
         "spiral/roadrunner-laravel": "^5.9",
         "tightenco/ziggy": "^1.0"
     },
