@@ -66,7 +66,7 @@ class Team extends Model
                 'prt' => 'pt',
                 'qat' => 'qa',
                 'sau' => 'sa',
-                'sen' => 'se',
+                'sen' => 'sn',
                 'srb' => 'rs',
                 'tun' => 'tn',
                 'ury' => 'uy',
