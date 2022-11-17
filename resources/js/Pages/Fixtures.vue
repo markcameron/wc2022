@@ -1,12 +1,30 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import moment from 'moment';
-import 'moment-timezone';
-import { Link } from '@inertiajs/inertia-vue3';
+    import AppLayout from '@/Layouts/AppLayout.vue';
+    import { onMounted, onUnmounted } from 'vue';
+    import moment from 'moment';
+    import 'moment-timezone';
+    import { Link } from '@inertiajs/inertia-vue3';
 
-defineProps({
-    fixtures: Array,
-});
+    defineProps({
+        fixtures: Array,
+    });
+
+    let div = null
+    let scrollStorageKey = 'scroll-position-fixtures'
+
+    onMounted(() => {
+        div = document.getElementById('scrollable')
+        if (div.clientHeight !== 0 && localStorage.getItem(scrollStorageKey) != null) {
+            div.scrollTop = parseInt(localStorage.getItem(scrollStorageKey));
+        }
+        div.addEventListener('scroll', handleScroll)
+    });
+    onUnmounted(() => div.removeEventListener('scroll', handleScroll));
+
+    const handleScroll = (event) => {
+        localStorage.setItem(scrollStorageKey, div.scrollTop);
+    };
+
 </script>
 
 <template>
@@ -19,7 +37,7 @@ defineProps({
 
         <div class="py-8 px-4">
             <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-                    
+
                 <div v-for="fixture in fixtures" class="mb-2 py-2 px-4 rounded-lg bg-white border border-white font-bold">
                     <Link :href="fixture.url">
                         <div class="flex flex-row">

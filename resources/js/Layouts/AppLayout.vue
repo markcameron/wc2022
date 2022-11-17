@@ -302,7 +302,7 @@ const logout = () => {
             </header>
 
             <!-- Page Content -->
-            <main class="flex-1 overflow-y-scroll bg-gradient-to-b from-wc-darker to-wc-dark">
+            <main class="flex-1 overflow-y-scroll bg-gradient-to-b from-wc-darker to-wc-dark" id="scrollable">
 
                 <slot />
 

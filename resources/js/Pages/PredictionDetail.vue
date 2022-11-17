@@ -39,7 +39,7 @@ const increaseScore = (prediction, team) => {
             </h2>
         </template>
 
-        <Back href="/predictions">back</Back>
+        <Back :href="route('predictions')">back</Back>
 
         <div class="py-8 px-4">
             <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
