@@ -312,11 +312,11 @@ const logout = () => {
                 <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
                 <section id="bottom-navigation" class="block fixed inset-x-0 bottom-0 z-10 bg-wc-dark shadow max-w-5xl mx-auto">
                     <div id="tabs" class="flex justify-between">
-                        <NavLink :href="route('fixtures')" :active="route().current('fixtures')" class="">
+                        <NavLink :href="route('fixtures')" :active="route().current('fixtures*')" class="">
                             <QueueListIcon class="inline-block w-8 h-8 mb-1"></QueueListIcon>
                             <span class="tab tab-home block text-xs font-extrabold">Matches</span>
                         </NavLink>
-                        <NavLink :href="route('predictions')" :active="route().current('predictions')" class="">
+                        <NavLink :href="route('predictions')" :active="route().current('predictions*')" class="">
                             <ClipboardDocumentCheckIcon class="inline-block w-8 h-8 mb-1"></ClipboardDocumentCheckIcon>
                             <span class="tab tab-home block text-xs">Predictions</span>
                         </NavLink>
