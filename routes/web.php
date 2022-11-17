@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\FixturesController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PredictionsController;
 
 /*
@@ -48,5 +49,9 @@ Route::middleware([
 
     Route::controller(LeaderboardController::class)->group(function () {
         Route::get('leaderboard', 'index')->name('leaderboard');
+    });
+
+    Route::controller(PagesController::class)->group(function () {
+        Route::get('rules', 'rules')->name('rules');
     });
 });
