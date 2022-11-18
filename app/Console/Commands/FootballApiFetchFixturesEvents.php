@@ -32,6 +32,7 @@ class FootballApiFetchFixturesEvents extends Command
     public function handle()
     {
         $this->activeFixtures()
+            ->each(fn ($fixture) => $this->info('Active Fixture: ' . $fixture->id . ' | ' . $fixture->homeTeam->name . ' v ' . $fixture->awayTeam->name))
             ->map(fn ($fixture) => $this->fetchFixtureEvents($fixture))
             ->each(fn ($fixtureEvents) => $this->updateEvents($fixtureEvents));
 
