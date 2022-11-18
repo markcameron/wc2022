@@ -6,9 +6,9 @@ namespace App\Transporter\Requests;
 
 use App\Transporter\Requests\BaseRequest;
 
-class FixturesRequest extends BaseRequest
+class FixtureEventsRequest extends BaseRequest
 {
     protected string $method = 'GET';
 
-    protected string $path = 'fixtures';
+    protected string $path = 'fixtures/events';
 }
