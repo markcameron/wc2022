@@ -31,7 +31,7 @@ jobs:
     # Install NPM packages
     - name: npm and node versions
       run: npm -v
-      run: node -v
+           node -v
     - name: Install packages
       run: npm install -f
     - name: Compile VueJS PWA
