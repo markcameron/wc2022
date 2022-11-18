@@ -5,7 +5,7 @@ return [
     'manifest' => [
         'name' => 'Qatar 2022 Predictor',
         'short_name' => 'Qatar 2022',
-        'start_url' => '/',
+        'start_url' => 'https://qatar2022.kram.xyz/',
         'background_color' => '#953044',
         'theme_color' => '#953044',
         'display' => 'standalone',
