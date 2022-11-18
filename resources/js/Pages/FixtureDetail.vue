@@ -36,14 +36,22 @@ const back = () => {
                         <div class="text-3xl text-gray-900 flex flex-row">
                             <div class="mr-3 flex items-center"><Flag :code="fixture.home_team.flag" width="w-10" height="h-7" /></div>
                             <div class="flex-grow">{{ fixture.home_team.name }}</div>
-                            <div class="w-8">{{ fixture.started ? fixture.score_home : '' }}</div>
+                            <div class="w-8">{{ fixture.started ? fixture.goals_home.length : '' }}</div>
                         </div>
                         <div class="text-3xl text-gray-900 flex flex-row">
                             <div class="mr-3 flex items-center"><Flag :code="fixture.away_team.flag" width="w-10" height="h-7" /></div>
                             <div class="flex-grow">{{ fixture.away_team.name }}</div>
-                            <div class="w-8">{{ fixture.started ? fixture.score_away : '' }}</div>
+                            <div class="w-8">{{ fixture.started ? fixture.goals_away.length : '' }}</div>
                         </div>
                         <p class="mt-2 text-gray-500 tracking-tighter uppercase text-sm">{{ fixture.venue.name }} - {{ fixture.venue.city }}</p>
+                    </div>
+
+                    <div v-if="fixture.goals.length" class="border-t py-2 bg-gray-100 border-gray-300">
+                        <div v-for="goal in fixture.goals" class="px-2 py-1 border-b border-gray-200 last:border-b-0 flex flex-row">
+                            <div class="flex-1 font-bold">{{ goal.team_id === fixture.home_team_id ? goal.player_name : '' }}</div>
+                            <div class="w-10 text-center font-bold">{{ goal.time_elapsed }}'</div>
+                            <div class="flex-1 font-bold text-right">{{ goal.team_id === fixture.away_team_id ? goal.player_name : '' }}</div>
+                        </div>
                     </div>
 
                     <div v-if="fixture.started" class="border-t border-gray-300 rounded-b-lg">

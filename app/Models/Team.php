@@ -89,4 +89,11 @@ class Team extends Model
             },
         );
     }
+
+    public function goals(Fixture $fixture)
+    {
+        return $this->hasMany(Event::class)
+            ->where('fixture_id', $fixture->id)
+            ->where('type', 'Goal');
+    }
 }

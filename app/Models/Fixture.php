@@ -27,6 +27,8 @@ class Fixture extends Model
         'url',
         'url_prediction',
         'started',
+        'goals_home',
+        'goals_away',
     ];
 
     protected $dates = [
@@ -48,6 +50,11 @@ class Fixture extends Model
         return $this->belongsTo(Venue::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function predictions()
     {
         return $this->hasMany(Prediction::class);
@@ -58,14 +65,31 @@ class Fixture extends Model
         return $this->hasOne(Prediction::class)->whereUserId(Auth::user()->id);
     }
 
-    public function goalsHome()
+    public function goals()
     {
-        return $this->hasMany(Goal::class)->whereTeam('home');
+        return $this->hasMany(Event::class)
+            ->where('type', 'Goal')
+            ->orderBy('time_elapsed');
     }
 
-    public function goalsAway()
+    protected function goalsHome(): Attribute
     {
-        return $this->hasMany(Goal::class)->whereTeam('away');
+        return Attribute::make(
+            get: fn ($value) => $this->events()
+                ->where('team_id', $this->home_team_id)
+                ->where('type', 'Goal')
+                ->get(),
+        );
+    }
+
+    protected function goalsAway(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->events()
+                ->where('team_id', $this->away_team_id)
+                ->where('type', 'Goal')
+                ->get(),
+        );
     }
 
     /**

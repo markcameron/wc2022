@@ -44,12 +44,14 @@
                         <div class="flex flex-row">
                             <div class="mr-4 flex items-center"><Flag :code="fixture.home_team.flag" /></div>
                             <div class="flex flex-grow items-center">{{ fixture.home_team.name }}</div>
-                            <div class="w-16 uppercase text-center">{{ moment(fixture.date).format('ddd D') }}</div>
+                            <div v-if="fixture.started" class="w-16 uppercase text-center">{{ fixture.goals_home.length }}</div>
+                            <div v-else class="w-16 uppercase text-center">{{ moment(fixture.date).format('ddd D') }}</div>
                         </div>
                         <div class="flex flex-row">
                             <div class="mr-4 flex items-center"><Flag :code="fixture.away_team.flag" /></div>
                             <div class="flex flex-grow items-center">{{ fixture.away_team.name }}</div>
-                            <div class="w-16 uppercase text-center">{{ moment.utc(fixture.date).tz('Europe/Zurich').format('HH:mm') }}</div>
+                            <div v-if="fixture.started" class="w-16 uppercase text-center">{{ fixture.goals_away.length }}</div>
+                            <div v-else class="w-16 uppercase text-center">{{ moment.utc(fixture.date).tz('Europe/Zurich').format('HH:mm') }}</div>
                         </div>
                     </Link>
                 </div>
