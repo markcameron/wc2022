@@ -70,7 +70,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('prediction_status')->html(),
-                Tables\Columns\TextColumn::make('last_seen_at')
+                Tables\Columns\TextColumn::make('last_seen')
                     ->dateTime(),
             ])
             ->filters([
