@@ -10,7 +10,7 @@ class LeaderboardController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::get();
+        $users = User::with(['predictions.fixture.events'])->get();
 
         $users->transform(fn($user) => $user->append('score'));
 
