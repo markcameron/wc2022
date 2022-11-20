@@ -8,7 +8,6 @@ use App\Enums\ScoreType;
 
 class ScoreService
 {
-
     const POINTS_CORRECT_SCORE = 5;
     const POINTS_CORRECT_DIFFERENCE = 3;
     const POINTS_CORRECT_WINNER = 2;

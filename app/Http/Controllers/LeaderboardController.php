@@ -15,7 +15,7 @@ class LeaderboardController extends Controller
         $users->transform(fn($user) => $user->append('score'));
 
         return Inertia::render('Leaderboard', [
-            'users' => $users,
+            'users' => $users->sortByDesc('score')->values(),
         ]);
     }
 }
