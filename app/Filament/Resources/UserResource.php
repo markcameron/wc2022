@@ -69,11 +69,8 @@ class UserResource extends Resource
                 Tables\Columns\ImageColumn::make('avatar'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                Tables\Columns\TextColumn::make('prediction_status')->html(),
+                Tables\Columns\TextColumn::make('last_seen_at')
                     ->dateTime(),
             ])
             ->filters([

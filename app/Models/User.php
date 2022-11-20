@@ -80,7 +80,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * Get the Fixture detail URL
+     * Get the user display_name
      *
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
@@ -91,8 +91,29 @@ class User extends Authenticatable implements FilamentUser
         );
     }
 
+    /**
+     * Get the status of number of predictions
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function predictionStatus(): Attribute
+    {
+        $count = $this->predictions->count();
+        $total = Fixture::count();
+        $color = 'text-danger-500';
+        if ($count === $total) {
+            $color = 'text-success-500';
+        }
+        return Attribute::make(
+            get: fn ($value) => '<span class="' . $color . '">' . $count . ' / ' . $total . '</span>',
+        );
+    }
+
     public function canAccessFilament(): bool
     {
-        return $this->email === 'budfrogfryer@gmail.com';
+        return in_array($this->email, [
+            'admin@example.com',
+            'budfrogfryer@gmail.com',
+        ]);
     }
 }
