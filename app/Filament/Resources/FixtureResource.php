@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FixtureResource\Pages;
-use App\Filament\Resources\FixtureResource\RelationManagers;
-use App\Models\Fixture;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use App\Models\Fixture;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Collection;
+use Filament\Tables\Actions\BulkAction;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\FixtureResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\FixtureResource\RelationManagers;
 
 class FixtureResource extends Resource
 {
@@ -94,7 +96,13 @@ class FixtureResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                // Tables\Actions\DeleteBulkAction::make(),
+                BulkAction::make('Enable predictions')
+                    ->action(fn (Collection $records) => $records->each(fn (Fixture $fixture) => $fixture->update(['can_predict' => true])))
+                    ->deselectRecordsAfterCompletion(),
+                BulkAction::make('Disable predictions')
+                    ->action(fn (Collection $records) => $records->each(fn (Fixture $fixture) => $fixture->update(['can_predict' => false])))
+                    ->deselectRecordsAfterCompletion(),
             ]);
     }
     
