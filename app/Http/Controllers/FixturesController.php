@@ -25,6 +25,7 @@ class FixturesController extends Controller
             'users' => User::get()->map(fn($user) => [
                 'info' => $user,
                 'prediction' => $user->prediction($fixture),
+                'predictionState' => $user->predictionState($fixture),
             ]),
         ]);
     }

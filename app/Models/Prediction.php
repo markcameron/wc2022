@@ -40,7 +40,7 @@ class Prediction extends Model
 
     public function hasNoScore()
     {
-        return is_null($this->fixture->score_home) && is_null($this->fixture->score_away);
+        return is_null($this->fixture->goals_home->count()) && is_null($this->fixture->goals_away->count());
     }
 
     public function decreaseScore(string $team): void

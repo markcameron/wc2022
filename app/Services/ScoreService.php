@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Prediction;
 use App\Models\User;
+use App\Enums\ScoreType;
 
 class ScoreService
 {
@@ -23,25 +24,29 @@ class ScoreService
         return $user->predictions->mapToGroups(fn($prediction) => [$this->getPredictionStatus($prediction) => 1])->filter();
     }
 
-    public function getPredictionStatus(Prediction $prediction): ?string
+    public function getPredictionStatus(?Prediction $prediction): ?string
     {
+        if (is_null($prediction)) {
+            return null;
+        }
+
         if (!$prediction->fixture->started) {
             return null;
         }
 
         if ($this->predictedCorrectScore($prediction)) {
-            return Prediction::EXACT_SCORE;
+            return ScoreType::ExactScore->value;
         }
 
         if ($this->predictedCorrectDifference($prediction)) {
-            return Prediction::GOAL_DIFFERENCE;
+            return ScoreType::GoalDifference->value;
         }
 
         if ($this->predictedCorrectWinner($prediction)) {
-            return Prediction::WINNER;
+            return ScoreType::Winner->value;
         }
 
-        return Prediction::LOSER;
+        return ScoreType::Loser->value;
     }
 
     private function getPredictionPoints(Prediction $prediction): int
@@ -76,8 +81,8 @@ class ScoreService
      */
     private function predictedCorrectScore(Prediction $prediction): bool
     {
-        return $prediction->score_home === $prediction->fixture->score_home
-            && $prediction->score_away === $prediction->fixture->score_away;
+        return $prediction->score_home === $prediction->fixture->goals_home->count()
+            && $prediction->score_away === $prediction->fixture->goals_away->count();
     }
 
     /**
@@ -96,7 +101,7 @@ class ScoreService
         }
 
         $predicted_difference = $prediction->score_home - $prediction->score_away;
-        $match_difference = $prediction->fixture->score_home - $prediction->fixture->score_away;
+        $match_difference = $prediction->fixture->goals_home->count() - $prediction->fixture->goals_away->count();
 
         return $predicted_difference === $match_difference;
     }
@@ -117,7 +122,7 @@ class ScoreService
         }
 
         $predicted_difference = $prediction->score_home - $prediction->score_away;
-        $match_difference = $prediction->fixture->score_home - $prediction->fixture->score_away;
+        $match_difference = $prediction->fixture->goals_home->count() - $prediction->fixture->goals_away->count();
 
         return $predicted_difference < 0 && $match_difference < 0
             || $predicted_difference > 0 && $match_difference > 0;

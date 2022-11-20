@@ -92,6 +92,17 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * Get the user display_name
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    public function predictionState(Fixture $fixture)
+    {
+        $prediction = $this->prediction($fixture);
+        return resolve(ScoreService::class)->getPredictionStatus($prediction);
+    }
+
+    /**
      * Get the status of number of predictions
      *
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
@@ -115,5 +126,19 @@ class User extends Authenticatable implements FilamentUser
             'admin@example.com',
             'budfrogfryer@gmail.com',
         ]);
+    }
+
+    /**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     *
+     * @return string
+     */
+    protected function defaultProfilePhotoUrl()
+    {
+        $name = trim(collect(explode(' ', $this->name))->map(function ($segment) {
+            return mb_substr($segment, 0, 1);
+        })->join(' '));
+
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=953044&background=eeeee4';
     }
 }
