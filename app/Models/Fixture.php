@@ -68,7 +68,7 @@ class Fixture extends Model
     public function goals()
     {
         return $this->hasMany(Event::class)
-            ->where('type', 'Goal')
+            ->goals()
             ->orderBy('time_elapsed');
     }
 
@@ -77,8 +77,7 @@ class Fixture extends Model
         return Attribute::make(
             get: fn ($value) => $this->events()
                 ->where('team_id', $this->home_team_id)
-                ->where('type', 'Goal')
-                ->where('detail', ['Normal Goal', 'Penalty'])
+                ->goals()
                 ->get(),
         );
     }
@@ -88,8 +87,7 @@ class Fixture extends Model
         return Attribute::make(
             get: fn ($value) => $this->events()
                 ->where('team_id', $this->away_team_id)
-                ->where('type', 'Goal')
-                ->where('detail', ['Normal Goal', 'Penalty'])
+                ->goals()
                 ->get(),
         );
     }
