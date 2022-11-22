@@ -78,6 +78,7 @@ class Fixture extends Model
             get: fn ($value) => $this->events()
                 ->where('team_id', $this->home_team_id)
                 ->where('type', 'Goal')
+                ->where('detail', ['Normal Goal', 'Penalty'])
                 ->get(),
         );
     }
@@ -88,6 +89,7 @@ class Fixture extends Model
             get: fn ($value) => $this->events()
                 ->where('team_id', $this->away_team_id)
                 ->where('type', 'Goal')
+                ->where('detail', ['Normal Goal', 'Penalty'])
                 ->get(),
         );
     }
