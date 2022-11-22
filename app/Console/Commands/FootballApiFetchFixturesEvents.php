@@ -15,7 +15,7 @@ class FootballApiFetchFixturesEvents extends Command
      *
      * @var string
      */
-    protected $signature = 'football-api:fixture-events';
+    protected $signature = 'football-api:fixture-events {--a|all}';
 
     /**
      * The console command description.
@@ -41,6 +41,10 @@ class FootballApiFetchFixturesEvents extends Command
 
     private function activeFixtures(): Collection
     {
+        if ($this->option('all')) {
+            return Fixture::where('date', '<', now())->get();
+        }
+
         return Fixture::whereBetween('date', [now()->subHours(3), now()])->get();
     }
 
