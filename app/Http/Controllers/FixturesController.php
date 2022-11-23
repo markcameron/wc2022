@@ -13,6 +13,7 @@ class FixturesController extends Controller
     {
         return Inertia::render('Fixtures', [
             'fixtures' => Fixture::with(['homeTeam', 'awayTeam'])->orderBy('date')->get(),
+            'todaysFixtures' => Fixture::with(['homeTeam', 'awayTeam'])->whereDate('date', now()->toDateString())->orderBy('date')->get(),
         ]);
     }
 
