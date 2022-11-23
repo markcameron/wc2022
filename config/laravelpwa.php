@@ -14,31 +14,31 @@ return [
         'icons' => [
             '48x48' => [
                 'path' => '/images/icons/maskable_icon_x48.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
             '72x72' => [
                 'path' => '/images/icons/maskable_icon_x72.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
             '96x96' => [
                 'path' => '/images/icons/maskable_icon_x96.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
             '128x128' => [
                 'path' => '/images/icons/maskable_icon_x128.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
             '192x192' => [
                 'path' => '/images/icons/maskable_icon_x192.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
             '384x384' => [
                 'path' => '/images/icons/maskable_icon_x384.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
             '512x512' => [
                 'path' => '/images/icons/maskable_icon_x512.png',
-                'purpose' => 'maskable'
+                'purpose' => 'maskable any',
             ],
         ],
         'splash' => [
