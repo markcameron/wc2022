@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Fixture;
+use App\Services\EventsService;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
@@ -102,6 +103,9 @@ class FixtureResource extends Resource
                     ->deselectRecordsAfterCompletion(),
                 BulkAction::make('Disable predictions')
                     ->action(fn (Collection $records) => $records->each(fn (Fixture $fixture) => $fixture->update(['can_predict' => false])))
+                    ->deselectRecordsAfterCompletion(),
+                BulkAction::make('UpdateEvents')
+                    ->action(fn (Collection $records) => $records->each(fn (Fixture $fixture) => resolve(EventsService::class)->fixture($fixture)->handle()))
                     ->deselectRecordsAfterCompletion(),
             ]);
     }
