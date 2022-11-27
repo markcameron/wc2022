@@ -1,9 +1,6 @@
 <?php
 
-use Inertia\Inertia;
-use App\Models\Fixture;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 use App\Http\Controllers\FixturesController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\PagesController;
@@ -22,12 +19,6 @@ use App\Http\Controllers\PredictionsController;
 
 Route::get('/', function () {
     return redirect('fixtures');
-    // return Inertia::render('Welcome', [
-    //     'canLogin' => Route::has('login'),
-    //     'canRegister' => Route::has('register'),
-    //     'laravelVersion' => Application::VERSION,
-    //     'phpVersion' => PHP_VERSION,
-    // ]);
 });
 
 Route::middleware([

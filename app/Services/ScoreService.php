@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Prediction;
 use App\Models\User;
 use App\Enums\ScoreType;
+use App\Models\Prediction;
+use Illuminate\Support\Collection;
 
 class ScoreService
 {
@@ -21,6 +22,22 @@ class ScoreService
     public function getUserStats(User $user)
     {
         return $user->predictions->mapToGroups(fn($prediction) => [$this->getPredictionStatus($prediction) => 1])->filter();
+    }
+
+    public function getLeaderboard(): Collection
+    {
+        $users = User::with(['predictions.fixture.events'])->get();
+
+        $users = $users
+            ->map(function ($user) {
+                $userArray = $user->attributesToArray();
+                $userArray['score'] = $this->getUserScore($user);
+                return $userArray;
+            })
+            ->sortByDesc('score')
+            ->values();
+
+        return $users;
     }
 
     public function getPredictionStatus(?Prediction $prediction): ?string
