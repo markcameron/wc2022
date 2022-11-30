@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('football-api:fixtures')->hourly();
         $schedule->command('football-api:fixture-events')->everyMinute();
     }
 
