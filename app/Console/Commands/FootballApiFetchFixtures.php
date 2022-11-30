@@ -48,14 +48,18 @@ class FootballApiFetchFixtures extends Command
     {
         $venue = $this->venue($fixture);
 
-        Fixture::updateOrCreate([
-            'id' => $fixture['fixture']['id'],
-            'date' => Carbon::parse($fixture['fixture']['date']),
-            'home_team_id' => $fixture['teams']['home']['id'],
-            'away_team_id' => $fixture['teams']['away']['id'],
-            'venue_id'  => $venue->id,
-            'stage' => $fixture['league']['round'],
-        ]);
+        Fixture::updateOrCreate(
+            [
+                'id' => $fixture['fixture']['id'],
+            ],
+            [
+                'date' => Carbon::parse($fixture['fixture']['date']),
+                'home_team_id' => $fixture['teams']['home']['id'],
+                'away_team_id' => $fixture['teams']['away']['id'],
+                'venue_id'  => $venue->id,
+                'stage' => $fixture['league']['round'],
+            ]
+        );
     }
 
     private function venue(array $fixture): Venue
