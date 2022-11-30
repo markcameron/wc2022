@@ -60,9 +60,9 @@
                     </div>
                 </div>
 
-                <div class="my-6">
-                    <h3 class="mb-2 font-bold font-xl text-white">Group stage</h3>
-                    <div v-for="fixture in fixtures" class="mb-2 py-2 px-4 rounded-lg bg-white border border-white font-bold">
+                <div v-for="(stageFixtures, stage) in fixtures" class="my-6">
+                    <h3 class="mb-2 font-bold font-xl text-white">{{ stage }}</h3>
+                    <div v-for="fixture in stageFixtures" class="mb-2 py-2 px-4 rounded-lg bg-white border border-white font-bold">
                         <Link :href="fixture.url">
                             <div class="flex flex-row">
                                 <div class="mr-4 flex items-center"><Flag :code="fixture.home_team.flag" /></div>

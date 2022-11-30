@@ -12,7 +12,7 @@ class FixturesController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Fixtures', [
-            'fixtures' => Fixture::with(['homeTeam', 'awayTeam'])->orderBy('date')->get(),
+            'fixtures' => Fixture::with(['homeTeam', 'awayTeam'])->orderBy('date')->get()->groupBy('stage')->reverse(),
             'todaysFixtures' => Fixture::with(['homeTeam', 'awayTeam'])->whereDate('date', now()->toDateString())->orderBy('date')->get(),
         ]);
     }

@@ -11,7 +11,7 @@ class PredictionsController extends Controller
 {
     public function index(Request $request)
     {
-        $fixtures = Fixture::with(['homeTeam', 'awayTeam', 'userPrediction'])->orderBy('date')->get();
+        $fixtures = Fixture::with(['homeTeam', 'awayTeam', 'userPrediction'])->orderBy('date')->get()->groupBy('stage')->reverse();
 
         return Inertia::render('Predictions', [
             'fixtures' => $fixtures,
