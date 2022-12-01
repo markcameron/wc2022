@@ -35,6 +35,6 @@ class Event extends Model
     {
         return $query
             ->where('type', 'Goal')
-            ->whereIn('detail', ['Normal Goal', 'Penalty']);
+            ->whereIn('detail', ['Normal Goal', 'Penalty', 'Own Goal']);
     }
 }
