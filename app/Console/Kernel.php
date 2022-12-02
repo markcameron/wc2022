@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('football-api:fixtures')->hourly();
         $schedule->command('football-api:fixture-events')->everyMinute();
+        $schedule->command('predictions:close-on-kickoff')->everyMinute();
     }
 
     /**
