@@ -120,6 +120,20 @@ class User extends Authenticatable implements FilamentUser
         );
     }
 
+    /**
+     * Get the status of number of predictions
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function missingPredictionsCount(): Attribute
+    {
+        $fixturesToPredict = Fixture::canPredict()->get();
+
+        return Attribute::make(
+            get: fn ($value) => $fixturesToPredict->filter(fn ($fixture) => !$fixture->userPrediction)->count(),
+        );
+    }
+
     public function canAccessFilament(): bool
     {
         return in_array($this->email, [

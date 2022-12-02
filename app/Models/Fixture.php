@@ -65,6 +65,11 @@ class Fixture extends Model
         return $this->hasOne(Prediction::class)->whereUserId(Auth::user()->id);
     }
 
+    public function scopeCanPredict($query)
+    {
+        return $query->where('can_predict', true);
+    }
+
     public function goals()
     {
         return $this->hasMany(Event::class)
