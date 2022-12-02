@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Fixture;
 use App\Models\Prediction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PredictionsController extends Controller
 {
@@ -21,6 +22,10 @@ class PredictionsController extends Controller
 
     public function show(Request $request, Fixture $fixture)
     {
+        if (!$fixture->can_predict) {
+            return Redirect::route('predictions');
+        }
+
         $prediction = Prediction::firstOrCreate([
             'user_id' => auth()->user()->id,
             'fixture_id' => $fixture->id,
