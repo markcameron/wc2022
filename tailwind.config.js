@@ -24,6 +24,9 @@ module.exports = {
                 'wc-darker': '#953044', //'#9f3043', //'#56042C',
                 'wc-darkest': '#982043', //'#3d0918',
             },
+            transitionProperty: {
+                'height': 'height',
+            },
         },
     },
 

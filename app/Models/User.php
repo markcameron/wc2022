@@ -3,16 +3,18 @@
 namespace App\Models;
 
 use App\Models\Fixture;
+use App\Enums\ScoreType;
+use Illuminate\Support\Str;
 use App\Services\ScoreService;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Filament\Models\Contracts\FilamentUser;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -132,6 +134,25 @@ class User extends Authenticatable implements FilamentUser
         return Attribute::make(
             get: fn ($value) => $fixturesToPredict->filter(fn ($fixture) => !$fixture->userPrediction)->count(),
         );
+    }
+
+    public function getPredictionStatsAttribute()
+    {
+        $scoreService = new ScoreService();
+        return $scoreService->getUserStats($this);
+    }
+
+    public function getLeaderboardSortAttribute()
+    {
+        $stats = $this->prediction_stats;
+
+        return collect([
+            Str::padLeft($this->score, 3, '0'),
+            Str::padLeft(($stats->get(ScoreType::ExactScore->value)?->count() ?? 0), 2, '0'),
+            Str::padLeft(($stats->get(ScoreType::GoalDifference->value)?->count() ?? 0), 2, '0'),
+            Str::padLeft(($stats->get(ScoreType::Winner->value)?->count() ?? 0), 2, '0'),
+            Str::padLeft(($stats->get(ScoreType::Loser->value)?->count() ?? 0), 2, '0'),
+        ])->join('');
     }
 
     public function canAccessFilament(): bool

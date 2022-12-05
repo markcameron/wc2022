@@ -32,9 +32,11 @@ class ScoreService
             ->map(function ($user) {
                 $userArray = $user->attributesToArray();
                 $userArray['score'] = $this->getUserScore($user);
+                $userArray['stats'] = $this->getUserStats($user);
+                $userArray['sort'] = $user->leaderboard_sort;
                 return $userArray;
             })
-            ->sortByDesc('score')
+            ->sortByDesc('sort')
             ->values();
 
         return $users;
