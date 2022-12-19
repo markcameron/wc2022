@@ -48,7 +48,7 @@ import { isIntegerKey } from '@vue/shared';
                     <template v-else>You are missing {{ missingPredictions}} predictions for the next round</template>
                 </BannerDanger>
 
-                <div class="my-6">
+                <div v-if="todaysFixtures.length" class="my-6">
                     <h3 class="mb-2 font-bold font-xl text-white">Today</h3>
                     <div v-for="fixture in todaysFixtures" class="mb-2 py-2 px-4 rounded-lg bg-white border border-white font-bold">
                         <Link :href="fixture.url">
